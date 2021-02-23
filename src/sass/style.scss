@@ -1,0 +1,9 @@
+// On importe les variables en premier
+@import "components/variables";
+
+// Ensuite on importe le global qui est notre composant principal
+@import "components/global";
+
+// Puis on importe nos plus petits composants
+@import "./components/cards";
+@import "components/bar";

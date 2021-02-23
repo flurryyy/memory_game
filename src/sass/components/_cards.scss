@@ -1,0 +1,40 @@
+// Carte de jeu
+.game-card {
+  width: 100px;
+  height: 100px;
+  border-radius: $radius;
+  background: url('/images/card-verso.jpg') no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border: 3px solid gray;
+  transition: border .2s ease;
+
+  &:hover {
+    border: 3px solid white;
+  }
+}
+
+// On crée une variable pour y définir, dans l'ordre, les fruits présents sur cards.png
+// On initialise aussi la variable $position qui va permet de connaitre notre position dans l'image (en hauteur) en pixel
+$fruits: [red-apple banana orangefruit green-lemon pomegranate apricot yellow-lemon strawberry green-apple peach green-grape watermelon plumfruit orange-pear cherry raspberry mango yellow-cherry];
+$position: 0;
+
+// Pour chaque fruit on crée une classe correspondante et qui affichera donc le bon fruit
+@each $fruit in $fruits
+{
+  .#{$fruit}{
+    background: url('/images/cards.png') no-repeat 0 #{$position}px!important;
+  }
+  // À chaque boucle on descend dans l'image de 100px
+  $position: $position - 100;
+}
+
+// Carte sélectionnée
+.selected {
+  border: 3px solid orange!important;
+}
+
+// Carte confirmée
+.confirmed {
+  border: 3px solid darkgreen!important;
+}

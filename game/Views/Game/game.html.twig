@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Fruits Memory Game <span id="timer"></span></h1>
+    {{ url }}
+    <div id="infos">
+        <h3 id="score"></h3>
+        <h3>Scoreboard :</h3>
+        <div id="bestScores">
+            {% if bestScores is empty %}
+                <h3>Aucun meilleur score pour le moment !</h3>
+            {% else %}
+                    {% set i = 1 %}
+                    {% for bestScore in bestScores %}
+                        <p>{{ i }}) {{ bestScore.score|date('i') }} minute(s) et {{ bestScore.score|date('s') }} seconde(s)</p>
+                        {% set i = i+1 %}
+                    {% endfor %}
+            {% endif %}
+        </div>
+        <p>
+            Choisie ton mode pour lancer une partie.
+            <br>
+            Tu auras plus ou moins de temps pour trouver toutes les paires.
+            <br>
+            Le but est de faire le meilleur score quoiqu'il arrive ! Bon courage :)
+            <br>
+            La limite de temps sert juste à mettre une pression supplémentaire, mouhahaha !
+        </p>
+        <div class="flex flex-space-around">
+            <button class="launch-game" class="" onclick="launchGame('easy')">Facile (5min)</button>
+            <button class="launch-game" class="" onclick="launchGame('medium')">Moyen (3min)</button>
+            <button class="launch-game" class="" onclick="launchGame('hard')">Difficile (1min30)</button>
+        </div>
+    </div>
+    <div id="game-grid" class="blur">
+        {% set fruitNb = 0 %}
+        {% for i in 1..36 %}
+            <div class="game-card" data-id="{{ i }}" data-fruit="{{ fruitNb }}" onclick="select({{ i }}, {{ fruitNb }})"></div>
+            {% set fruitNb = fruitNb+1 %}
+            {% if fruitNb == 18 %}
+                {% set fruitNb = 0 %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <progress id="progress" value="0" max="240"></progress>
+{% endblock %}

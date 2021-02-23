@@ -1,0 +1,24 @@
+{
+    "name": "mathiasd07/memory_game",
+    "description": "O'clock technical test",
+    "authors": [
+        {
+            "name": "Mathias Davin",
+            "email": "davmathias78@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "twig/twig": "^3.0",
+        "ext-pdo": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Game\\": "game/"
+        },
+        "files": [
+            "game/Helpers/helpers.php"
+        ]
+    }
+}

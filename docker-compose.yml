@@ -1,0 +1,45 @@
+# Le fichier docker-compose.yml permet de composer plusieurs images, cela leur permet de communiquer entre elles.
+# On va y référencer tout ce dont nous avons besoin pour notre projet et les configurer.
+# Version du fichier
+version: '3.8'
+
+# Services dont notre projet dépend
+services:
+  database:  # On crée un service appelé database
+    image: mysql:5.7  # Il utilisera l'image mysql en version 5.7
+    restart: always # Redémarre toujours le service
+    container_name: memory_database # On lui donne un petit nom
+    command: --init-file /data/application/memory_game.sql # Exécute une commande qui va charger notre script SQL pour initialier la base
+    volumes: # On crée des volumes qui sont des liens entre notre machine et le container
+      - ./memory_game.sql:/data/application/memory_game.sql # Par exemple ce volume va partager notre script SQL pour la commande d'init
+      - db_data:/var/lib/mysql # Lui, va stocker nos données
+    environment: # On défini les variables d'environnements nécessaires au bon fonctionnement de l'image
+      MYSQL_ROOT_PASSWORD: root # Le mot de passe root
+      MYSQL_DATABASE: memory_game # Le nom de la base de donnée
+      MYSQL_USER: memory # L'utilisateur de la base de donnée
+      MYSQL_PASSWORD: game # Le mot de passe pour l'utilisateur ci-dessus
+    ports: # Permet de rediriger un port du container sur un port local de notre machine
+      - 9906:3306 # Ici, on redirige le port 3306 du container sur le port 9906 de notre machine. On aura accès à mysql sur notre machine avec le port 3306
+  phpmyadmin: # On crée un service phpmyadmin
+    depends_on: # On défini s'il dépend d'un autre service
+      - database # Il dépend en effet du service de base de donnée nommée ci-dessus "database"
+    image: phpmyadmin/phpmyadmin # Il utilisera l'image phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8081:80 # On redirige le port 80 du container sur le port 8081 de notre machine
+    environment:
+      PMA_HOST: database # Notre host mysql (reprendre le nom du service de base de données => "database")
+      MYSQL_ROOT_PASSWORD: root # Le mot de passe root de mysql (Pareil, il est défini ci-dessus dans le service "database")
+  apache: # Définition du service apache
+    depends_on:
+      - database # Dépend du service "database"
+    build: # Permet de lancer un build d'un dockerfile
+      context: . # On sélectionne notre projet
+      dockerfile: Dockerfile # On précise le dockerfile
+    restart: always
+    container_name: memory_apache
+    ports:
+    - 8080:80 # On redirige le port 80 du container sur le port 8080 de notre machine
+
+volumes:
+  db_data: {}

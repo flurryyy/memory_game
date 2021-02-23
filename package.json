@@ -1,0 +1,21 @@
+{
+  "name": "memory_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass ./src/sass/style.scss ./public/stylesheets/style.css",
+    "sass-watch": "sass --watch ./src/sass/style.scss ./public/stylesheets/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MathiasD07/memory_game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MathiasD07/memory_game/issues"
+  },
+  "homepage": "https://github.com/MathiasD07/memory_game#readme"
+}
