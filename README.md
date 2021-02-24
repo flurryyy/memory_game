@@ -15,6 +15,9 @@ Voici une liste des fonctionnalités requises :
 - Le joueur gagne s'il arrive à découvrir toutes les paires avant la fin du temps imparti.
 - Chaque temps de partie effectuée doit être sauvegardée en base de données. Avant le début du jeu, les meilleurs temps s’affichent à l’écran.
 
+## Lien vers la demo
+Voici à quoi ressemble le jeu une fois déployé, [cliquez-ici](https://memorygame.codgency.tech) pour accéder au serveur de démo.
+
 ## Première installation
 ⚠️ Avant de lire le déploiement classique et pour ceux qui sont interresés, l'application peut être déployé avec Docker. Vous retrouverez les insctructions [ICI](https://github.com/flurryyy/memory_game/blob/main/DOCKER.md)
 1. Installer les dépendances PHP avec un `composer install`
