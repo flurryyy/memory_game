@@ -18,8 +18,7 @@ progress {
   }
 
   &::-moz-progress-bar {
-    background-color: lightgrey;
-    border-radius: $radius;
+    background-color: $primary;
   }
 
   // Responsive
