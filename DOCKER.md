@@ -14,7 +14,7 @@ Explications : `up` permet de créer et lancer les containers, `-d` ou `--detach
 
 3. C'EST TOUT ! Rendez-vous à l'adresse `http://localhost:8080` pour profiter du jeu.
 
-⚠️ PS : Si vous essayé d'aller instantanément sur `http://localhost:8080` vous allez rencontre une erreur "Connection refused", c'est normal attendez bien quelques secondes de plus que les containers soit bien démarrés et fonctionnels. 
+⚠️ PS : Si vous essayez d'aller instantanément sur `http://localhost:8080` vous allez rencontre une erreur "Connection refused", c'est normal attendez bien quelques secondes de plus que les containers soit bien démarrés et fonctionnels. 
 
 Pour éteindre les service et supprimer les containers fait la commande :
 ```
