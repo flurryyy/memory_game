@@ -11,6 +11,7 @@ h1 {
 
 #game-grid {
   width: fit-content;
+  width: -moz-fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 12px;
